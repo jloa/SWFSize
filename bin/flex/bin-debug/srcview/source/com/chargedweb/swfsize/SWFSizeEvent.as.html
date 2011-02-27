@@ -1,0 +1,187 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>SWFSizeEvent.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//    @author        Julius Loa a.k.a. Jloa | jloa[at]chargedweb.com
+</span><span class="ActionScriptComment">//    @link        www.chargedweb.com/swfsize/
+</span><span class="ActionScriptComment">//    @version    1.1
+</span><span class="ActionScriptComment">//    @project    SWFSize
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//     Licence:    CC 3.0 { http://creativecommons.org/licenses/by-sa/3.0/ }
+</span><span class="ActionScriptComment">//    Note:         the project is fully open source; just please keep the header;
+</span><span class="ActionScriptComment">//                if u r to make any changes please add your info
+</span><span class="ActionScriptComment">//                (author/email/version/changes) to the header
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span><span class="ActionScriptASDoc">/**
+ * v.1.1 changes
+ * 
+ *  - property windowWidth added
+ *  - property windowHeight added
+ *  - property swfWidth added
+ *  - property swfHeight added
+ *  - property scrollX added
+ *  - property scrollY added
+ */</span>
+<span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">com</span>.<span class="ActionScriptDefault_Text">chargedweb</span>.<span class="ActionScriptDefault_Text">swfsize</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptComment">// fp API
+</span>    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span>.<span class="ActionScriptDefault_Text">events</span>.<span class="ActionScriptDefault_Text">Event</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     * &lt;p&gt;The SWFSizeEvent class defines events that are associated with the SWFSize object.&lt;/p&gt;
+     * &lt;p&gt;These include the following events:&lt;/p&gt;
+     * &lt;ul&gt;
+     * &lt;li&gt;&lt;code&gt;SWFSizeEvent.INIT&lt;/code&gt;: dispatched when SWFSize js is loaded and ready;&lt;/li&gt;
+     * &lt;li&gt;&lt;code&gt;SWFSizeEvent.SCROLL&lt;/code&gt;: dispatched when user scrolls browser&apos;s native scrollbars;&lt;/li&gt;
+     * &lt;li&gt;&lt;code&gt;SWFSizeEvent.RESIZE&lt;/code&gt;: dispatched when browser&apos;s window is being resized.&lt;/li&gt;
+     * &lt;/ul&gt;
+     * @see SWFSize 
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">SWFSizeEvent</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">Event</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptASDoc">/**
+         * &lt;p&gt;The SWFSizeEvent.INIT constant defines the value of the &lt;code&gt;type&lt;/code&gt; property of the
+         * event object for a &lt;code&gt;onInit&lt;/code&gt; event; dispatched when SWFSize js is loaded and ready.&lt;/p&gt;
+         * @eventType onInit
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">INIT</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">&quot;onInit&quot;</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * &lt;p&gt;The SWFSizeEvent.SCROLL constant defines the value of the &lt;code&gt;type&lt;/code&gt; property of the
+         * event object for a &lt;code&gt;onScroll&lt;/code&gt; event; dispatched when user scrolls the browser&apos;s native scrollbars.&lt;/p&gt;
+         * @eventType onScroll
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">SCROLL</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">&quot;onScroll&quot;</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * &lt;p&gt;The SWFSizeEvent.SCROLL constant defines the value of the &lt;code&gt;type&lt;/code&gt; property of the
+         * event object for a &lt;code&gt;onResize&lt;/code&gt; event; dispatched when the browser&apos;s window is being resized.&lt;/p&gt;
+         * @eventType onResize
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">RESIZE</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">&quot;onResize&quot;</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current browser&apos;s window leftX coordinate value
+         */</span> 
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">leftX</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current browser&apos;s window rightX coordinate value
+         */</span> 
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">rightX</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current browser&apos;s window topY coordinate value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">topY</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current browser&apos;s window bottomY coordinate value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">bottomY</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current browser&apos;s window width value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">windowWidth</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current browser&apos;s height width value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">windowHeight</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current swf container&apos;s width value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">swfWidth</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Object</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current swf container&apos;s height value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">swfHeight</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Object</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current scrollX value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">scrollX</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Current scrollY value
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">scrollY</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>;
+        
+        <span class="ActionScriptASDoc">/**
+         * Constructor; creates a new SWFSizeEvent object.
+         * @param    type:String                event type
+         * @param    leftX:Number            browser&apos;s leftX coordinate
+         * @param    rightX:Number            browser&apos;s rightX coordinate
+         * @param    topY:Number                browser&apos;s topY coordinate
+         * @param    bottomY:Number            the browser&apos;s bottomY coordinate
+         * @param    windowWidth:Number        the browser&apos;s window width value
+         * @param    windowHeight:Number        the browser&apos;s window height value
+         * @param    swfWidth:Object            swf container&apos;s width value object
+         * @param    swfHeight:Object        swf container&apos;s height value object
+         * @param    scrollX:Number            current scrollX value
+         * @param    scrollY:Number            current scrollY value
+         * @param    bubbles:Boolean            bubbles @see flash.events.Event @default false
+         * @param    cancelable:Boolean        cancelable @see flash.events.Event @default false
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">SWFSizeEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">String</span>,
+                                     <span class="ActionScriptDefault_Text">leftX</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">rightX</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">topY</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">bottomY</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">windowWidth</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">windowHeight</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">swfWidth</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Object</span>,
+                                     <span class="ActionScriptDefault_Text">swfHeight</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Object</span>,
+                                     <span class="ActionScriptDefault_Text">scrollX</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">scrollY</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Number</span>,
+                                     <span class="ActionScriptDefault_Text">bubbles</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>,
+                                     <span class="ActionScriptDefault_Text">cancelable</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptOperator">:</span><span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">topY</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">topY</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">bottomY</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">bottomY</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">leftX</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">leftX</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">rightX</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">rightX</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">windowWidth</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">windowWidth</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">windowHeight</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">windowHeight</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">swfWidth</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">swfWidth</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">swfHeight</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">swfHeight</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">scrollX</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">scrollX</span>;
+            <span class="ActionScriptReserved">this</span>.<span class="ActionScriptDefault_Text">scrollY</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">scrollY</span>;
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">type</span>, <span class="ActionScriptDefault_Text">bubbles</span>, <span class="ActionScriptDefault_Text">cancelable</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         * Formats the event as string
+         * @return    the string representation of the SWFSizeEvent class. 
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">toString</span><span class="ActionScriptBracket/Brace">()</span><span class="ActionScriptOperator">:</span><span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span> 
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">formatToString</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">&quot;SWFSizeEvent&quot;</span>,
+                                  <span class="ActionScriptString">&quot;type&quot;</span>,
+                                  <span class="ActionScriptString">&quot;leftX&quot;</span>,
+                                  <span class="ActionScriptString">&quot;rightX&quot;</span>,
+                                  <span class="ActionScriptString">&quot;topY&quot;</span>,
+                                  <span class="ActionScriptString">&quot;bottomY&quot;</span>,
+                                  <span class="ActionScriptString">&quot;windowWidth&quot;</span>,
+                                  <span class="ActionScriptString">&quot;windowHeight&quot;</span>,
+                                  <span class="ActionScriptString">&quot;swfWidth&quot;</span>,
+                                  <span class="ActionScriptString">&quot;swfHeight&quot;</span>,
+                                  <span class="ActionScriptString">&quot;scrollX&quot;</span>,
+                                  <span class="ActionScriptString">&quot;scrollY&quot;</span>,
+                                  <span class="ActionScriptString">&quot;bubbles&quot;</span>,
+                                  <span class="ActionScriptString">&quot;cancelable&quot;</span><span class="ActionScriptBracket/Brace">)</span>; 
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>
