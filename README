@@ -1,0 +1,17 @@
+=== project ===
+[home]	http://chargedweb.com/swfsize/
+[git]	https://github.com/jloa/SWFSize
+[packs]	http://sourceforge.net/projects/swfsize/
+
+=== licence ===
+CC 3.0 @ http://creativecommons.org/licenses/by-sa/3.0/
+
+=== structure ===
+[as3 docs]		./docs/
+[as3 source]	./src/
+[js source]		./lib/js/swfsize.js
+[example]		./lib/index.html
+
+=== note ===
+If have any suggestions, plz send them to me @ jloa[at]chargedweb.com
+Much appreciated.

@@ -2,7 +2,6 @@
 //
 //	@author		Julius Loa a.k.a. Jloa | jloa[at]chargedweb.com
 //	@link		www.chargedweb.com/swfsize/
-//	@version	1.3
 //	@project	SWFSize
 //
 // 	Licence:	CC 3.0 { http://creativecommons.org/licenses/by-sa/3.0/ }
@@ -12,13 +11,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * v.1.3 changes
- * 	- n/a
+ * changes
  * 
- * v.1.2 changes
+ * v.1.4
  *  - n/a
  * 
- * v.1.1 changes
+ * v.1.3 
+ * 	- n/a
+ * 
+ * v.1.2
+ *  - n/a
+ * 
+ * v.1.1
  *  - property windowWidth added
  *  - property windowHeight added
  *  - property swfWidth added

@@ -2,7 +2,6 @@
 //
 //	@author		Julius Loa a.k.a. Jloa | jloa[at]chargedweb.com
 //	@link		www.chargedweb.com/swfsize/
-//	@version	1.3
 //	@project	SWFSize
 //
 // 	Licence:	CC 3.0 { http://creativecommons.org/licenses/by-sa/3.0/ }
@@ -12,15 +11,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * v.1.3 changes
+ * changes
+ * 
+ * v.1.4
+ *  - see the swfsize.js
+ * 
+ * v.1.3 
  * 	- see the swfsize.js
  * 
- * v.1.2 changes
+ * v.1.2
  * 	- switched the js engine singleton -> class (for more changes info read the js file) 
  * 	- SWF_ID property added
  * 	- js methods rewritten
  * 
- * v.1.1 changes
+ * v.1.1
  *  - increase in performance for setters using multithreading (setTimeout hack)
  *  - method setWidth() renamed to setSWFWidth
  *  - method getWidth() renamed to getSWFWidth
@@ -30,6 +34,7 @@
  */
 package com.chargedweb.swfsize
 {
+	// fp API
 	import flash.errors.IllegalOperationError;
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
@@ -68,9 +73,10 @@ package com.chargedweb.swfsize
 	 */
 	public class SWFSize extends EventDispatcher
 	{	
-		/**
-		 * The swf attributes.id defined in the html code; you have to define this before calling other methods;
-		 */
+		/** Holds the full version string **/
+		public static const VERSION:String = "1.4.0";
+		
+		/** The swf attributes.id defined in the html code; you have to define this before calling other methods; **/
 		public static var SWF_ID:String;
 		
 		/** @private SWFSize JS methods declaration **/
@@ -163,10 +169,8 @@ package com.chargedweb.swfsize
 		 */
 		public function autoSizeWidth(always:Boolean = false):void
 		{
-			if(always)
-				setSWFWidth(100, false);
-			else
-				setSWFWidth(windowWidth, true);
+			if(always) 	setSWFWidth(100, false);
+			else		setSWFWidth(windowWidth, true);
 		}
 		
 		/**
@@ -176,10 +180,8 @@ package com.chargedweb.swfsize
 		 */
 		public function autoSizeHeight(always:Boolean = false):void
 		{
-			if(always)
-				setSWFHeight(100, false);
-			else
-				setSWFHeight(windowHeight, true);
+			if(always) 	setSWFHeight(100, false);
+			else		setSWFHeight(windowHeight, true);
 		}
 		
 		/**
@@ -340,9 +342,9 @@ package com.chargedweb.swfsize
 		 */
 		private function init():void
 		{
-			if (!SWF_ID) throw new Error("SWF_ID not defined !");
+			if(!SWF_ID) throw new Error("SWF_ID not defined !");
 					
-			if (available)
+			if(available)
 			{
 				METHOD_INIT = METHOD_INIT.replace("%id%", SWF_ID);
 				METHOD_SET_SCROLL_X = METHOD_SET_SCROLL_X.replace("%id%", SWF_ID);
