@@ -15,3 +15,29 @@ CC 3.0 @ http://creativecommons.org/licenses/by-sa/3.0/
 === note ===
 If have any suggestions, plz send them to me @ jloa[at]chargedweb.com
 Much appreciated.
+
+[v.1.4]
+	- event broadcast removed from setSWFWidth(), setSWFHeight() methods [thx 2 Umano Teodori]
+[v.1.3]
+	- ie 6, 7 scroll bug fixed [thx to Reed Bertolette]
+[v.1.2]
+	- engine switched singleton -> class; now you can manage more than 1 embedded swf at a time! [thx David Aguilar for the suggestion]
+[v.1.1]
+	- improved performance
+	- method setWidth() renamed to setSWFWidth()
+	- method setHeight() renamed to setSWFHeight()
+[v.1.0]
+	- added setWidth() method
+	- added setHeight() method
+	- added getWidth() method
+	- added getHeight() method
+	- added getWindowWidth() method
+	- added getWindowHeight() method
+	- added getLeftX() method
+	- added getRightX() method
+	- added getTopY() method
+	- added getBottomY() method
+	- added setScrollX() method
+	- added getScrollX() method
+	- added setScrollY() method
+	- added getScrollY() method
