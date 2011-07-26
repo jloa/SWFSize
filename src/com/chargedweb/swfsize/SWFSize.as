@@ -13,7 +13,10 @@
 /**
  * changes
  * 
- * v.1.4
+ * v.1.4.1
+ * - SWF_ID now passed automatically via ExternalInterface.objectID (thx to Kalani kapaakea<at>manastudios.com)
+ * 
+ * v.1.4.0
  *  - see the swfsize.js
  * 
  * v.1.3 
@@ -56,7 +59,6 @@ package com.chargedweb.swfsize
 	 * import com.chargedweb.swfsize.SWFSizeEvent;
 	 * 
 	 * // initialize SWFSize
-	 * SWFSize.SWF_ID = stage.loaderInfo.parameters.swfsizeId;
 	 * var swfSizer:SWFSize = SWFSize.getInstance();
 	 * swfSizer.addEventListener(SWFSizeEvent.INIT, onSWFSizeInit);
 	 * 
@@ -74,10 +76,10 @@ package com.chargedweb.swfsize
 	public class SWFSize extends EventDispatcher
 	{	
 		/** Holds the full version string **/
-		public static const VERSION:String = "1.4.0";
+		public static const VERSION:String = "1.4.1";
 		
-		/** The swf attributes.id defined in the html code; you have to define this before calling other methods; **/
-		public static var SWF_ID:String;
+		/** @private The swf attributes.id defined in the html code; you have to define this before calling other methods; **/
+		private static var SWF_ID:String;
 		
 		/** @private SWFSize JS methods declaration **/
 		private static var METHOD_INIT:String = "SWFSizePool.getItemById('%id%').init";
@@ -341,11 +343,12 @@ package com.chargedweb.swfsize
 		 * @return	nothing
 		 */
 		private function init():void
-		{
-			if(!SWF_ID) throw new Error("SWF_ID not defined !");
-					
+		{		
 			if(available)
 			{
+				SWF_ID = ExternalInterface.objectID;
+				if(!SWF_ID) throw new Error("SWF_ID not defined !");
+				
 				METHOD_INIT = METHOD_INIT.replace("%id%", SWF_ID);
 				METHOD_SET_SCROLL_X = METHOD_SET_SCROLL_X.replace("%id%", SWF_ID);
 				METHOD_SET_SCROLL_Y = METHOD_SET_SCROLL_Y.replace("%id%", SWF_ID);
@@ -374,6 +377,8 @@ package com.chargedweb.swfsize
 					initTimer.addEventListener(TimerEvent.TIMER, onInitTimerHandler);
 					initTimer.start();
 				}
+			}else{
+				throw new Error("ExternalInterface not available");
 			}
 		}
 		

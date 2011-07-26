@@ -100,7 +100,6 @@ package com.chargedweb.swfsizedemo
 		public function init():void
 		{
 			// create SWFSize ref & add some listeners
-			SWFSize.SWF_ID = stage.loaderInfo.parameters.swfsizeId;
 			swfSizer = SWFSize.getInstance();
 			swfSizer.addEventListener(SWFSizeEvent.INIT, onWindowInit);
 			swfSizer.addEventListener(SWFSizeEvent.SCROLL, onWindowScroll);

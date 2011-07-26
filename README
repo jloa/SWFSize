@@ -13,10 +13,12 @@ CC 3.0 @ http://creativecommons.org/licenses/by-sa/3.0/
 [example]		./lib/index.html
 
 === note ===
-If have any suggestions, plz send them to me @ jloa[at]chargedweb.com
+If u have any suggestions, plz send them to me @ jloa[at]chargedweb.com / subj:swfsize
 Much appreciated.
 
-[v.1.4]
+[v.1.4.1]
+	- SWF_ID is now passed automatically [thx to Kalani aka kapaakea]
+[v.1.4.0]
 	- event broadcast removed from setSWFWidth(), setSWFHeight() methods [thx 2 Umano Teodori]
 [v.1.3]
 	- ie 6, 7 scroll bug fixed [thx to Reed Bertolette]
